@@ -6,14 +6,14 @@
 
 There have been some blog posts about people generating very small docker images from statically linked binaries. I wanted to see if i could do the same with dynamically linked binaries. Theory: as long as you provide the files that a process need it will run. 
 
-To find out about what files a program uses we can start it with `strace`. This gives us the runtime view of the files it i needs. To find all the shared libraries that its dynamically linked with we can use the `ldd` tool.
+To find out about what files a program uses we can start it with `strace`. This gives us the runtime view of the files it needs. To find all the shared libraries that its dynamically linked with we can use the `ldd` tool.
 
 First we need to find a suitable program. For this example i choose `fortune` that prints a fortune cookie to the commandline. The reason for that was that it is a dynamically linked binary and it also reads from files.
 
-If we capture all the files that the program depends on we can create a docker image with only those files. This is all done within an existing Debian image. The resulting image will be based on the `scratch` base docker image. The size of the fortune image is less than 4Mb, compared to the debain image that weighs in on 85.1 MB.
+If we capture all the files that the program depends on we can create a docker image with only those files. This is all done within an existing Debian image. The resulting image will be based on the `scratch` base docker image. The size of the fortune image is less than 4MB, compared to the debain image that weighs in on 85.1 MB.
 
 
-*Note: This is done in a docker image and thats why i run as root*
+*Note: Some of the steps is done in a docker image and thats why i run as root*
 
 ### Step 1: Install the program
 `$ apt-get install fortune`
