@@ -25,16 +25,15 @@ def main():
 	if len(sys.argv) < 2:
 		print "usage: filefilter <(strace|ldd) output...>"
 		exit(1)
-
+	
+	strace_pattern = re.compile('(open|stat|execve)\("([^"]+)"')
+	ldd_pattern = re.compile('(/.*) \(0x\w+\)$')
 
 	for arg_file in sys.argv[1:]:
 
 		output_file = open(arg_file, "r")
 
 		path_set = sets.Set()
-
-		strace_pattern = re.compile('(open|stat|execve)\("([^"]+)"')
-		ldd_pattern = re.compile('(/.*) \(0x\w+\)$')
 
 		for line in output_file:
 
