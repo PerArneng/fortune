@@ -1,7 +1,7 @@
 # Create Small Docker Images of Dynamically Linked Binaries
 
 *For the impatient:*
-`docker run perarneng/fortune` (4MB)
+`docker run perarneng/fortune` (3.831 MB)
 
 
 There have been some blog posts about people generating very small docker images from statically linked binaries. I wanted to see if i could do the same with dynamically linked binaries. Theory: as long as you provide the files that a process need it will run. 
